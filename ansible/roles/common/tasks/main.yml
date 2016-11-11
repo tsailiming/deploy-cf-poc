@@ -1,0 +1,25 @@
+---
+- name: Subscribe the system to RHSM
+  redhat_subscription: state=present username={{ rhsm_username }} password={{ rhsm_password }}
+
+- name: Attach the system to a particular pool
+  command: subscription-manager attach --pool {{ rhsm_pool_id }}
+
+- name: Disable all repos
+  command: subscription-manager repos --disable=*
+
+- name: Enable repos
+  command: subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-server-rhscl-7-rpms --enable=cf-me-5.6-for-rhel-7-rpms
+
+- name: Install additional rpm dependencies
+  package: name={{ item }} state=latest
+  with_items:
+    - mkisofs
+    - python-psycopg2
+    - vim-enhanced
+
+- name: Install additional gem dependencies
+  gem: name={{ item }} state=latest
+  with_items:
+    - rbvmomi
+    - unix-crypt

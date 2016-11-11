@@ -1,0 +1,2 @@
+vmdb_root: /var/www/miq/vmdb
+db_dump: 2016-09-27-db.tgz

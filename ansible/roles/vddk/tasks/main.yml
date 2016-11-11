@@ -1,0 +1,14 @@
+---
+# From https://access.redhat.com/articles/2078103
+
+- name: Extract vddk
+  unarchive: src={{ vddk_file }} dest=/usr/lib/
+   
+- name: Symlink libraries
+  file: src=/usr/lib/vmware-vix-disklib-distrib/lib64/{{ item }} dest=/usr/lib/{{ item }} state=link
+  with_items:
+    - libvixDiskLib.so
+    - libvixDiskLib.so.6
+
+- name: Rebuild Dynamic Linker Run Time Bindings 
+  command: ldconfig
