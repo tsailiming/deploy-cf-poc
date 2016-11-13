@@ -10,7 +10,7 @@ Setup
 * 1 Approval group
 * 1 End user group
 * Tenant quota
-* Workers all reduced to 1. C&U turned off.
+* C&U turned off.
 * Self-service catalog accessible by end user, Juan
 * All providers/smtp username/password have been removed. :)
 * Working catalogs for Azure/RHV/RHOSP/VMware
